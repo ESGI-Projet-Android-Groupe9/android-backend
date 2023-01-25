@@ -1,4 +1,4 @@
-export interface GameProps{
+export interface GameFullProps{
     gameId: string,
     name: string,
     editor: string,
@@ -10,7 +10,7 @@ export interface GameProps{
     background: string,
 }
 
-export class Game implements GameProps{
+export class GameFull implements GameFullProps{
     private _gameId!: string;
     private _name!: string;
     private _editor!: string;
@@ -22,7 +22,7 @@ export class Game implements GameProps{
     private _background!: string;
 
 
-    constructor(gameProps: GameProps) {
+    constructor(gameProps: GameFullProps) {
         this._gameId = gameProps.gameId;
         this._name = gameProps.name;
         this._editor = gameProps.editor;
