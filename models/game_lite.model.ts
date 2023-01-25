@@ -1,4 +1,4 @@
-export interface GameLiteProps{
+export interface GameLiteProps {
     gameId: string,
     name: string,
     editor: string,
@@ -7,7 +7,7 @@ export interface GameLiteProps{
     background: string,
 }
 
-export class GameLite implements GameLiteProps{
+export class GameLite implements GameLiteProps {
     private _gameId!: string;
     private _name!: string;
     private _editor!: string;

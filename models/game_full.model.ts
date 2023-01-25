@@ -1,4 +1,4 @@
-export interface GameFullProps{
+export interface GameFullProps {
     gameId: string,
     name: string,
     editor: string,
@@ -10,7 +10,7 @@ export interface GameFullProps{
     background: string,
 }
 
-export class GameFull implements GameFullProps{
+export class GameFull implements GameFullProps {
     private _gameId!: string;
     private _name!: string;
     private _editor!: string;

@@ -1,5 +1,5 @@
-import express, {Router, Request, Response} from "express";
-import {GameService} from "../services";
+import express, {Request, Response, Router} from "express";
+import {GameService} from "../services/game.service";
 
 export class GameController {
 
@@ -16,25 +16,26 @@ export class GameController {
     async getFullGame(req: Request, res: Response) {
         try {
             const game = await GameService.getInstance().getFullGameById(req.params.game_id);
-            if(!game) {
+            if (!game) {
                 res.status(404).end();
                 return;
             }
             res.json(game);
-        } catch(err) {
+        } catch (err) {
             res.status(400).end();
             return;
         }
     }
+
     async getLiteGame(req: Request, res: Response) {
         try {
             const game = await GameService.getInstance().getLiteGameById(req.params.game_id);
-            if(!game) {
+            if (!game) {
                 res.status(404).end();
                 return;
             }
             res.json(game);
-        } catch(err) {
+        } catch (err) {
             res.status(400).end();
             return;
         }

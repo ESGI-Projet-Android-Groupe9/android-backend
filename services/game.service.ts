@@ -1,18 +1,22 @@
 import axios from "axios";
-import {GameFull} from "../models";
 import {config} from "dotenv";
+import {GameFull} from "../models/game_full.model";
 import {GameLite} from "../models/game_lite.model";
+
 config();
 
 export class GameService {
     private static instance?: GameService;
+
     public static getInstance(): GameService {
-        if(GameService.instance === undefined) {
+        if (GameService.instance === undefined) {
             GameService.instance = new GameService();
         }
         return GameService.instance;
     }
-    private constructor() { }
+
+    private constructor() {
+    }
 
     async getAllFullGames(): Promise<GameFull[]> {
         let games: GameFull[] = [];
@@ -21,7 +25,7 @@ export class GameService {
             const response = await axios.get(url);
             const ranksData = response.data['response']['ranks'];
 
-            for (let i=0; i<20; i++){
+            for (let i = 0; i < 20; i++) {
                 const gameId = ranksData[i]['appid'];
                 const game = await this.getFullGameById(gameId);
                 if (game instanceof GameFull) {
@@ -33,6 +37,7 @@ export class GameService {
         }
         return games;
     }
+
     async getAllLiteGames(): Promise<GameLite[]> {
         let games: GameLite[] = [];
         try {
@@ -40,7 +45,7 @@ export class GameService {
             const response = await axios.get(url);
             const ranksData = response.data['response']['ranks'];
 
-            for (let i=0; i<20; i++){
+            for (let i = 0; i < 20; i++) {
                 const gameId = ranksData[i]['appid'];
                 const game = await this.getLiteGameById(gameId);
                 if (game instanceof GameLite) {
@@ -56,7 +61,7 @@ export class GameService {
     async getFullGameById(gameId: string): Promise<GameFull | undefined> {
         try {
             const url = process.env.GAME_ITEM_BASE_URL
-            const response = await axios.get(url+'/appdetails/?appids='+gameId);
+            const response = await axios.get(url + '/appdetails/?appids=' + gameId);
             const data = response.data[gameId].data;
             return new GameFull({
                 gameId: gameId,
@@ -73,10 +78,11 @@ export class GameService {
             console.error('Error:', error);
         }
     }
+
     async getLiteGameById(gameId: string): Promise<GameLite | undefined> {
         try {
             const url = process.env.GAME_ITEM_BASE_URL
-            const response = await axios.get(url+'/appdetails/?appids='+gameId);
+            const response = await axios.get(url + '/appdetails/?appids=' + gameId);
             const data = response.data[gameId].data;
             return new GameLite({
                 gameId: gameId,

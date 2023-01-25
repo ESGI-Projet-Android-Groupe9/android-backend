@@ -1,6 +1,7 @@
 import axios from "axios";
-import {Review} from "../models";
+import {Review} from "../models/review.model";
 import {config} from "dotenv";
+
 config();
 
 export class ReviewService {
@@ -20,10 +21,10 @@ export class ReviewService {
         let reviews: Review[] = [];
         try {
             const url = process.env.GAME_REVIEWS_BASE_URL;
-            const response = await axios.get(url+gameId+'?json=1');
+            const response = await axios.get(url + gameId + '?json=1');
             const reviewsData = response.data['reviews'];
 
-            for (let i=0; i<reviewsData.length; i++){
+            for (let i = 0; i < reviewsData.length; i++) {
 
                 // const reviewData = reviewsData[i];
                 reviews.push(

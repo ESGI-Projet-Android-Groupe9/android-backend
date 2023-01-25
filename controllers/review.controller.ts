@@ -1,5 +1,5 @@
-import express, {Router, Request, Response} from "express";
-import {ReviewService} from "../services";
+import express, {Request, Response, Router} from "express";
+import {ReviewService} from "../services/review.service";
 
 export class ReviewController {
 

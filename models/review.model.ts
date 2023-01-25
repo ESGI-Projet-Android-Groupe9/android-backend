@@ -1,11 +1,11 @@
-export interface ReviewProps{
+export interface ReviewProps {
     reviewId: string,
     authorSteamId: string, //TODO add username instead
     review: string,
     rating: number //The rating will be based on 5. For example: rating = 3.2 on 5
 }
 
-export class Review implements ReviewProps{
+export class Review implements ReviewProps {
     private _reviewId!: string;
     private _authorSteamId!: string;
     private _review!: string;
@@ -51,10 +51,11 @@ export class Review implements ReviewProps{
         this._rating = value;
     }
 
-    public computeRating(total_positive: string, total_negative: string, total_reviews: string): number{
-        let rating: number = (parseInt(total_positive)-parseInt(total_negative))/parseInt(total_reviews);
+    public computeRating(total_positive: string, total_negative: string, total_reviews: string): number {
+        let rating: number = (parseInt(total_positive) - parseInt(total_negative)) / parseInt(total_reviews);
         return rating * 5;
     }
+
     // GetRating( positiveVotes, negativeVotes ) {
     //     const totalVotes = positiveVotes + negativeVotes;
     //     const average = positiveVotes / totalVotes;
