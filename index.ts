@@ -1,8 +1,10 @@
 const cors = require('cors');
 import {config} from "dotenv";
-config();
 import express from "express";
-import {GameController} from "./controllers";
+import {GameController} from "./controllers/game.controller";
+import {ReviewController} from "./controllers/review.controller";
+
+config();
 
 async function startServer(): Promise<void> {
 
@@ -13,7 +15,10 @@ async function startServer(): Promise<void> {
     const gameController = new GameController();
     app.use('/game', gameController.buildRoutes());
 
-    app.listen(process.env.PORT, function() {
+    const reviewController = new ReviewController();
+    app.use('/review', reviewController.buildRoutes());
+
+    app.listen(process.env.PORT, function () {
         console.log("Server listening on port " + process.env.PORT);
     });
 }
