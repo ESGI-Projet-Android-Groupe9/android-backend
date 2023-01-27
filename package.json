@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rmdir /s /q dist && tsc",
+    "build-macos": "rm -rf ./dist && npx tsc"
   },
   "author": "Souleman TRAORE, Sarah BOUADI, Sacha MOUCHON",
   "license": "MIT",
