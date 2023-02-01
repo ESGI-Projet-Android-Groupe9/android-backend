@@ -2,7 +2,7 @@ export interface GameLiteProps {
     gameId: string,
     name: string,
     editor: string,
-    price: number,
+    price: string,
     headerImage: string,
     background: string,
 }
@@ -11,7 +11,7 @@ export class GameLite implements GameLiteProps {
     private _gameId!: string;
     private _name!: string;
     private _editor!: string;
-    private _price!: number;
+    private _price!: string;
     private _headerImage!: string;
     private _background!: string;
 
@@ -49,11 +49,11 @@ export class GameLite implements GameLiteProps {
         this._editor = value;
     }
 
-    get price(): number {
+    get price(): string {
         return this._price;
     }
 
-    set price(value: number) {
+    set price(value: string) {
         this._price = value;
     }
 

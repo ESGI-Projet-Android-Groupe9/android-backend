@@ -5,7 +5,7 @@ export interface GameFullProps {
     detailedDescription: string,
     aboutTheGame: string,
     shortDescription: string,
-    price: number,
+    price: string,
     headerImage: string,
     background: string,
 }
@@ -17,7 +17,7 @@ export class GameFull implements GameFullProps {
     private _detailedDescription!: string;
     private _aboutTheGame!: string;
     private _shortDescription!: string;
-    private _price!: number;
+    private _price!: string;
     private _headerImage!: string;
     private _background!: string;
 
@@ -82,11 +82,11 @@ export class GameFull implements GameFullProps {
         this._shortDescription = value;
     }
 
-    get price(): number {
+    get price(): string {
         return this._price;
     }
 
-    set price(value: number) {
+    set price(value: string) {
         this._price = value;
     }
 

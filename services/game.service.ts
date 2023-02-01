@@ -70,7 +70,7 @@ export class GameService {
                 detailedDescription: data['detailed_description'],
                 aboutTheGame: data['about_the_game'],
                 shortDescription: data['short_description'],
-                price: 10,
+                price: "10",
                 headerImage: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/hero_capsule.jpg`,
                 background: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/header.jpg`
             });
@@ -88,7 +88,7 @@ export class GameService {
                 gameId: gameId,
                 name: data.name,
                 editor: data['publishers'],
-                price: 10,
+                price: "10",
                 headerImage: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/hero_capsule.jpg`,
                 background: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/header.jpg`
             });
