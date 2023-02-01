@@ -1,19 +1,19 @@
 export interface ReviewProps {
     reviewId: string,
-    authorSteamId: string, //TODO add username instead
+    username: string,
     review: string,
     rating: number //The rating will be based on 5. For example: rating = 3.2 on 5
 }
 
 export class Review implements ReviewProps {
     private _reviewId!: string;
-    private _authorSteamId!: string;
+    private _username!: string;
     private _review!: string;
     private _rating!: number;
 
     constructor(reviewProps: ReviewProps) {
         this._reviewId = reviewProps.reviewId;
-        this._authorSteamId = reviewProps.authorSteamId;
+        this._username = reviewProps.username;
         this._review = reviewProps.review;
         // this._rating = reviewProps.rating
         this._rating = 4.5
@@ -27,12 +27,12 @@ export class Review implements ReviewProps {
         this._reviewId = value;
     }
 
-    get authorSteamId(): string {
-        return this._authorSteamId;
+    get username(): string {
+        return this._username;
     }
 
-    set authorSteamId(value: string) {
-        this._authorSteamId = value;
+    set username(value: string) {
+        this._username = value;
     }
 
     get review(): string {

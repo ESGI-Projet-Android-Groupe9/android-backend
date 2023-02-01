@@ -25,12 +25,15 @@ export class ReviewService {
             const reviewsData = response.data['reviews'];
 
             for (let i = 0; i < reviewsData.length; i++) {
+                // Get the username from the steamId
+                const urlUsername = "https://steamcommunity.com/actions/ajaxresolveusers?steamids="
+                const userResponse = await axios.get(urlUsername + reviewsData[i]['author']['steamid']);
+                const usernameData = userResponse.data[0]['persona_name'];
 
-                // const reviewData = reviewsData[i];
                 reviews.push(
                     new Review({
                         reviewId: reviewsData[i]['recommendationid'],
-                        authorSteamId: reviewsData[i]['author']['steamid'],
+                        username: usernameData,
                         review: reviewsData[i]['review'],
                         rating: 4.2
                     })
