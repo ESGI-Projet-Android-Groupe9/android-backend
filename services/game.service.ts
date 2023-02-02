@@ -61,16 +61,16 @@ export class GameService {
     async getFullGameById(gameId: string): Promise<GameFull | undefined> {
         try {
             const url = process.env.GAME_ITEM_BASE_URL
-            const response = await axios.get(url + '/appdetails/?appids=' + gameId);
+            const response = await axios.get(url + '/appdetails?l=french&appids=' + gameId+ "&FR&cc=FR");
             const data = response.data[gameId].data;
             return new GameFull({
                 gameId: gameId,
                 name: data.name,
                 editor: data['publishers'],
                 detailedDescription: data['detailed_description'],
-                aboutTheGame: data['about_the_game'],
+                aboutTheGame: data['legal_notice'],
                 shortDescription: data['short_description'],
-                price: 10,
+                price: data['price_overview']['final_formatted'],
                 headerImage: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/hero_capsule.jpg`,
                 background: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/header.jpg`
             });
@@ -82,13 +82,13 @@ export class GameService {
     async getLiteGameById(gameId: string): Promise<GameLite | undefined> {
         try {
             const url = process.env.GAME_ITEM_BASE_URL
-            const response = await axios.get(url + '/appdetails/?appids=' + gameId+ "&l=french");
+            const response = await axios.get(url + '/appdetails?l=french&appids=' + gameId+ "&FR&cc=FR");
             const data = response.data[gameId].data;
             return new GameLite({
                 gameId: gameId,
                 name: data.name,
                 editor: data['publishers'],
-                price: data.price=== undefined ? "Gratuit" : data.price.final_formatted.replace(/[^\d.,]/g, ""),
+                price: data['price_overview']['final_formatted'],
                 headerImage: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/hero_capsule.jpg`,
                 background: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/header.jpg`
             });
