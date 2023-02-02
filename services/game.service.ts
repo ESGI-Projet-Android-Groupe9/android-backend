@@ -70,7 +70,7 @@ export class GameService {
                 detailedDescription: data['detailed_description'],
                 aboutTheGame: data['about_the_game'],
                 shortDescription: data['short_description'],
-                price: "10",
+                price: 10,
                 headerImage: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/hero_capsule.jpg`,
                 background: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/header.jpg`
             });
@@ -82,13 +82,13 @@ export class GameService {
     async getLiteGameById(gameId: string): Promise<GameLite | undefined> {
         try {
             const url = process.env.GAME_ITEM_BASE_URL
-            const response = await axios.get(url + '/appdetails/?appids=' + gameId);
+            const response = await axios.get(url + '/appdetails/?appids=' + gameId+ "&l=french");
             const data = response.data[gameId].data;
             return new GameLite({
                 gameId: gameId,
                 name: data.name,
                 editor: data['publishers'],
-                price: "10",
+                price: data.price=== undefined ? "Gratuit" : data.price.final_formatted.replace(/[^\d.,]/g, ""),
                 headerImage: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/hero_capsule.jpg`,
                 background: `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameId}/header.jpg`
             });
