@@ -25,7 +25,7 @@ export class GameService {
             const response = await axios.get(url);
             const ranksData = response.data['response']['ranks'];
 
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 30; i++) {
                 const gameId = ranksData[i]['appid'];
                 const game = await this.getFullGameById(gameId);
                 if (game instanceof GameFull) {
@@ -45,7 +45,7 @@ export class GameService {
             const response = await axios.get(url);
             const ranksData = response.data['response']['ranks'];
 
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 30; i++) {
                 const gameId = ranksData[i]['appid'];
                 const game = await this.getLiteGameById(gameId);
                 if (game instanceof GameLite) {
